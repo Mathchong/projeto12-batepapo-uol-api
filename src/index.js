@@ -22,7 +22,7 @@ mongoClient.connect().then(() => {
 
  setInterval(() =>{
     removeParticipantes()
-},1000)
+},15000)
 
 app.post('/participants', async (req, res) => {
     try {
@@ -159,7 +159,7 @@ async function removeParticipantes(){
         participants.forEach (async (participant) =>{
             let now = Date.now()
             const timeOff = now - participant.lastStatus
-            if(timeOff>15000){
+            if(timeOff>10000){
             let deleted = await participantsCollection.deleteOne({name: participant.name})
             }
         })
